@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+import sys
+import math
+
+# Define a function to factorize a number into two smaller factors
+def factorize(n):
+	for i in range(2, int(math.sqrt(n)) + 1):
+		if n % i == 0:
+			return "{}={}*{}".format(n, i, n// i)
+	return (n)
+with open(sys.argv[1], 'r') as f:
+	for line in f:
+            try:
+                n = int(line.strip())
+                print(factorize(n))
+            except ValueError:
+                print("Invalid input: {} is not a valid natural number".format(line.strip()))
+
