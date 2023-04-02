@@ -1,0 +1,29 @@
+#!/usr/bin/python3
+import sys
+import math
+
+def is_prime(n):
+	if n < 2:
+		return False
+	for i in range(2, int(math.sqrt(n)) + 1):
+		if n % i == 0:
+			return False
+	return True
+
+def factorize(n):
+	for i in range(2, int(math.sqrt(n)) + 1):
+		if n % i == 0:
+			if is_prime(i):
+				return i, n // i
+	return None, None
+if __name__ == '__main__':
+	filename = sys.argv[1]
+	
+	with open(filename, 'r') as f:
+		n = int(f.readline().strip())
+		p, q = factorize(n)
+		if p is None:
+			print("Unable to factorize {}".format(n))
+		else:
+			print("{}={}*{}".format(n, p, q))
+
